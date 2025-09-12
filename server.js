@@ -21,9 +21,9 @@ res.send('http get request sent to root api endpoint')
  * @desc Test endpoint
  */
 
-app.get('/', (req, res) =>
-    res.send('http get request sent to root api endpoint')
-    );
+// app.get('/', (req, res) =>
+//     res.send('http get request sent to root api endpoint')
+//     );
 
 /**
  * @route POST api/users
@@ -33,6 +33,6 @@ app.get('/', (req, res) =>
     console.log(req.body);
     res.send(req.body);
  });
- 
+
 // Connection listener
 app.listen(3000, () => console.log('Express server running on port 3000'));

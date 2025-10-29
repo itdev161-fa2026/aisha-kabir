@@ -9,6 +9,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import auth from './middleware/auth.js';
+import cors from 'cors';
 
 //Load environment variables
 dotenv.config();
@@ -18,6 +19,9 @@ const app = express();
 
 // Connect to the database
 connectDatabase();
+
+// Enable CORS
+app.use(cors());
 
 // Configure Middleware
 app.use(express.json({ extended: false }));
@@ -316,16 +320,6 @@ app.delete("/api/posts/:id", auth, async (req, res) => {
         res.status(500).send("Server error");
     }
 });
-
-
-
-
-        
-//             // Database to be saved here later
-//             res.send(req.body);
-//         }
-//     }
-// );
 
 // Connection listener
 app.listen(3000, () => console.log('Express server running on port 3000'));

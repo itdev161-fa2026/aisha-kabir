@@ -9,8 +9,8 @@ const PostCard = ({ post }) => {
 
     return (
         <div className="post-card">
-            <Link to={`/posts/${post._id}`} 
-            className="post-card-link">
+            <Link to={`/posts/${post._id}`}
+                className="post-card-link">
                 <h2>{post.title}</h2>
                 <div className="post-meta">
                     <span className="post-author">By{post.user?.name || 'Unknown'}</span>

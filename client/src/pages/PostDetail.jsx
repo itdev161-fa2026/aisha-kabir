@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getPostById, deletePost } from '../services/api';
 import { AuthContext } from '../context/authContext';
+import CommentList from '../components/CommentList';
 import './PostDetail.css';
 
 const PostDetail = () => {
@@ -38,7 +39,7 @@ const PostDetail = () => {
     const handleEdit = () => {
         navigate(`/posts/${id}/edit`);
     };
-    
+
     const handleDelete = async () => {
         if (window.confirm('Are you sure you want to delete this post? This action cannot be undone.')) {
             try {
@@ -109,11 +110,12 @@ const PostDetail = () => {
                 </div>
                 {canModify && (
                     <div className="post-actions">
-                    <button onClick={handleEdit} className="edit-button">Edit Post</button>
-                    <button onClick={handleDelete} className="delete-button">Delete Post</button>
+                        <button onClick={handleEdit} className="edit-button">Edit Post</button>
+                        <button onClick={handleDelete} className="delete-button">Delete Post</button>
                     </div>
                 )}
             </article>
+            <CommentList postId={id} />
         </div>
     );
 };

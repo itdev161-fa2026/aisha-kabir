@@ -58,7 +58,7 @@ export const loginUser = async (email, password) => {
 // Get all posts
 export const getPosts = async () => {
     try {
-        const response = await api.get (`/posts`);
+        const response = await api.get(`/posts`);
         return response.data;
     } catch (error) {
         console.error('Error fetching posts:', error);
@@ -80,7 +80,7 @@ export const getPostById = async (id) => {
 // Create a new post
 export const createPost = async (title, body) => {
     try {
-        const response = await api.post('/posts', { title, body});
+        const response = await api.post('/posts', { title, body });
         return response.data;
     } catch (error) {
         console.error('Error creating post:', error);
@@ -92,8 +92,9 @@ export const createPost = async (title, body) => {
 export const updatePost = async (id, title, body) => {
     try {
         const response = await api.put(`/posts/${id}`, {
-            title, body });
-            return response.data;
+            title, body
+        });
+        return response.data;
     } catch (error) {
         console.error('Error updating post:', error);
         throw error;
@@ -107,5 +108,49 @@ export const deletePost = async (id) => {
         return response.data;
     } catch (error) {
         console.error('Error deleting post:', error);
+    }
+};
+
+// Get comments for a post
+export const getComments = async (postId) => {
+    try {
+        const response = await api.get(`/posts/${postId}/comments`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching comments:', error);
+        throw error;
+    }
+};
+
+// Create a comment
+export const createComment = async (postId, body) => {
+    try {
+        const response = await api.post(`/posts/${postId}/comments`, { body });
+        return response.data;
+    } catch (error) {
+        console.error('Error creating comment:', error);
+        throw error;
+    }
+};
+
+// Update a comment
+export const updateComment = async (commentId, body) => {
+    try {
+        const response = await api.put(`/comments/${commentId}`, { body });
+        return response.data;
+    } catch (error) {
+        console.error('Error updating comment:', error);
+        throw error;
+    }
+};
+
+// Delete a comment
+export const deleteComment = async (commentId) => {
+    try {
+        const response = await api.delete(`/comments/${commentId}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error deleting comment:', error);
+        throw error;
     }
 };
